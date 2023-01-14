@@ -1,0 +1,47 @@
+.current__Page__Title__Item,
+.current__Page__Title__Item .new__Call__Container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.current__Page__Title__Item {
+    padding: 0 7%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #E0E0E0;
+}
+
+.current__Page__Title__Item p {
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 25px;
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+}
+
+.current__Page__Title__Item .new__Call__Container {
+    width: 10%;
+}
+
+.current__Page__Title__Item .new__Call__Container > * {
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.current__Page__Title__Item .new__Call__Container > *:hover,
+.current__Page__Title__Item .new__Call__Container > *:focus {
+    filter: brightness(0.7);
+}
+
+@media screen and (max-width: 767px) {
+    .current__Page__Title__Item {
+        padding-left: 14%;
+        padding-right: 2%;
+    }
+    .current__Page__Title__Item p {
+        width: 80%;
+    }
+    .current__Page__Title__Item .new__Call__Container {
+        width: 20%;
+    }
+}

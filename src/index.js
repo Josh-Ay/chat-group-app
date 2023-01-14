@@ -4,11 +4,28 @@ import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import { AppContextProvider } from './contexts/AppContext';
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+import { StreamContextProvider } from './contexts/StreamContext';
+import { UserContextProvider } from './contexts/UserContext';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <UserContextProvider>
+        <AppContextProvider>
+          <StreamContextProvider>
+            <App />
+          </StreamContextProvider>
+          <ToastContainer />
+        </AppContextProvider>
+      </UserContextProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

@@ -1,0 +1,125 @@
+.new__Message__Item__Container {
+    --white-color: #fff;
+    --new-msg-bg-color: #3C393F;
+    --send-btn-color: #2F80ED;
+    --text-color: #828282;
+}
+
+.new__Message__Item__Container,
+.new__Message__Item__Container .send__New__Message__Btn,
+.new__Message__Item__Container .add__Extra__Options__Container {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.new__Message__Item__Container {
+    width: 86%;
+    background: var(--new-msg-bg-color);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 7%;
+    justify-content: space-between;
+    color: var(--text-color);
+    padding: 0.66%;
+}
+
+.new__Message__Item__Container .add__Extra__Options__Container {
+    justify-content: space-between;
+    width: 10%;
+    position: relative;
+}
+
+.new__Message__Item__Container .add__Extra__Options__Container .all__Emojis__Container {
+    width: 20rem;
+    height: 14rem;
+    position: absolute;
+    background: var(--new-msg-bg-color);
+    bottom: 200%;
+    left: 0;
+    border-radius: 8px;
+    z-index: 9999;
+}
+
+.new__Message__Item__Container .add__Extra__Options__Container .all__Emojis__Container .emojis__Content,
+.new__Message__Item__Container .add__Extra__Options__Container .all__Emojis__Container .emojis__Content .emoji__Row {
+    display: flex;
+}
+
+.new__Message__Item__Container .add__Extra__Options__Container .all__Emojis__Container .emojis__Content {
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow-x: auto;
+    height: 80%;
+}
+
+.new__Message__Item__Container .add__Extra__Options__Container .all__Emojis__Container .emojis__Content .emoji__Row {
+    justify-content: space-between;
+    margin-right: 6%;
+    width: 100%;
+}
+
+.new__Message__Item__Container .add__Extra__Options__Container .all__Emojis__Container .emojis__Content .emoji {
+    margin: 2%;
+}
+
+.new__Message__Item__Container .search__Item__Container {
+    width: 94%;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.new__Message__Item__Container .send__New__Message__Btn,
+.new__Message__Item__Container .add__Extra__Options__Container .icon,
+.new__Message__Item__Container .add__Extra__Options__Container .all__Emojis__Container .emojis__Content .emoji {
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.new__Message__Item__Container input {
+    width: calc(100% - 10% - 2.45875rem - 2%);
+    padding-left: 2%;
+    font-family: 'Noto Sans', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 19px;
+    letter-spacing: -0.035em;
+    color: var(--white-color);
+    caret-color: var(--send-btn-color);
+}
+
+.new__Message__Item__Container input::placeholder {
+    color: var(--text-color);
+}
+
+.new__Message__Item__Container .send__New__Message__Btn {
+    background: var(--send-btn-color);
+    width: 2.45875rem;
+    height: 2.45875rem;
+    justify-content: center;
+    color: var(--white-color);
+}
+
+.new__Message__Item__Container .add__Extra__Options__Container .icon:hover,
+.new__Message__Item__Container .add__Extra__Options__Container .icon:focus,
+.new__Message__Item__Container .send__New__Message__Btn:hover,
+.new__Message__Item__Container .send__New__Message__Btn:focus,
+.new__Message__Item__Container .add__Extra__Options__Container .all__Emojis__Container .emojis__Content .emoji:hover,
+.new__Message__Item__Container .add__Extra__Options__Container .all__Emojis__Container .emojis__Content .emoji:focus {
+    filter: brightness(0.7);
+}
+
+@media screen and (max-width: 767px) {
+    .new__Message__Item__Container {
+        bottom: 3%;
+        width: 96%;
+    }
+    .new__Message__Item__Container input {
+        padding-left: 13%;
+    }
+    .new__Message__Item__Container .search__Item__Container input {
+        padding-left: 4%;
+    }
+}

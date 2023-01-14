@@ -1,0 +1,116 @@
+.new__Channel__Popup__Overlay {
+    --bg-overlay-color: rgba(18, 15, 19, 0.5);
+    --card-bg-color: #120F13;
+    --input-bg-color: #3C393F;
+    --input-text-color: #828282;
+    --button-bg-color: #2F80ED;
+    --button-text-color: #F2F2F2;
+}
+
+.new__Channel__Popup__Overlay {
+    position: fixed;
+    z-index: 9999999;
+    width: 100vmax;
+    height: 100%;
+    background-color: var(--bg-overlay-color);
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.new__Channel__Popup__Overlay .new__Channel__Card__Item {
+    width: 35.6rem;
+    height: 22.461rem;
+    background-color: var(--card-bg-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 24px;
+    padding: 1% 3%;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.new__Channel__Popup__Overlay .new__Channel__Card__Item .title {
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 25px;
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+    color: var(--button-text-color);
+}
+
+.new__Channel__Popup__Overlay .new__Channel__Card__Item input,
+.new__Channel__Popup__Overlay .new__Channel__Card__Item textarea {
+    background-color: var(--input-bg-color);
+    color: var(--button-text-color);
+    width: 96%;
+    display: block;
+    border-radius: 8px;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 500;
+    font-size: 1.125rem;
+    line-height: 25px;
+    letter-spacing: -0.035em;
+    padding: 2%;
+    transition: 0.3s ease-in-out;
+    margin-bottom: 5%;
+    border: 1px solid var(--card-bg-color);
+    resize: none;
+}
+
+.new__Channel__Popup__Overlay .new__Channel__Card__Item input::placeholder,
+.new__Channel__Popup__Overlay .new__Channel__Card__Item textarea::placeholder {
+    color: var(--input-text-color);
+}
+
+.new__Channel__Popup__Overlay .new__Channel__Card__Item input:focus-within,
+.new__Channel__Popup__Overlay .new__Channel__Card__Item textarea:focus-within {
+    border: 1px solid var(--button-bg-color);
+}
+
+.new__Channel__Popup__Overlay .new__Channel__Card__Item .save__New__Channel__Btn {
+    background-color: var(--button-bg-color);
+    font-family: 'Noto Sans', sans-serif;
+    border-radius: 8px;
+    color: var(--button-text-color);
+    display: block;
+    margin-left: auto;
+    font-weight: 500;
+    font-size: 1.125rem;
+    line-height: 25px;
+    letter-spacing: -0.035em;
+    padding: 1.3% 5.41%;  
+    cursor: pointer;
+    transition: 0.35s ease-in-out; 
+}
+
+.new__Channel__Popup__Overlay .new__Channel__Card__Item .save__New__Channel__Btn:hover,
+.new__Channel__Popup__Overlay .new__Channel__Card__Item .save__New__Channel__Btn:focus {
+    filter: brightness(0.7);
+}
+
+.new__Channel__Popup__Overlay .new__Channel__Card__Item .save__New__Channel__Btn:disabled,
+.new__Channel__Popup__Overlay .new__Channel__Card__Item .save__New__Channel__Btn[disabled] {
+    cursor: not-allowed;
+    filter: brightness(1);
+    opacity: 0.5;
+}
+
+@media screen and (max-width: 767px) {
+    .new__Channel__Popup__Overlay .new__Channel__Card__Item {
+        height: 20rem;
+        width: 80vw;
+    }
+    .new__Channel__Popup__Overlay .new__Channel__Card__Item .save__New__Channel__Btn {
+        padding-top: 2.5%;
+        padding-bottom: 2.5%;
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}

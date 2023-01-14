@@ -1,0 +1,98 @@
+.all__Messages__Container {
+    --text-color-1: #E0E0E0;
+    --text-color-2: #828282;
+}
+
+.all__Messages__Container {
+    margin-top: 6%;
+    max-height: 63%;
+    overflow-y: auto;
+}
+
+.all__Messages__Container .message__Item__Container ,
+.all__Messages__Container .message__Item__Container .message__Contents__Item .top__Content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.all__Messages__Container .message__Item__Container {
+    width: 86%;
+    margin: 0 auto;
+}
+
+.all__Messages__Container .message__Item__Container .message__Image__Item {
+    width: 2.625rem;
+    height: 2.625rem;
+    margin-right: 3%;
+    border-radius: 7px;
+}
+
+.all__Messages__Container img {
+    max-width: 100%;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.all__Messages__Container .message__Item__Container .message__Contents__Item {
+    width: 70%;
+}
+
+.all__Messages__Container .message__Item__Container .message__Contents__Item .top__Content {
+    color: var(--text-color-2);
+    align-items: baseline;
+}
+
+.all__Messages__Container .message__Item__Container .message__Contents__Item .top__Content p ,
+.all__Messages__Container .message__Item__Container .message__Contents__Item .message__Content p {
+    font-size: 1.125rem;
+    line-height: 12px;
+    letter-spacing: -0.035em;
+}
+
+.all__Messages__Container .message__Item__Container .message__Contents__Item .top__Content p {
+    font-weight: 700;
+    margin-right: 5%;
+    margin-bottom: 0;
+    text-transform: capitalize;
+}
+
+.all__Messages__Container .message__Item__Container .message__Contents__Item .top__Content span {
+    font-size: 0.875rem;   
+    margin-top: 2%;
+    text-transform: lowercase;
+}
+
+.all__Messages__Container .message__Item__Container .message__Contents__Item .message__Content p {
+    color: var(--text-color-1);
+    font-weight: 500;
+}
+
+@media screen and (max-width: 767px) {
+    .all__Messages__Container {
+        max-height: 80%;
+    }
+    .all__Messages__Container .message__Item__Container {
+        width: 96%;
+        margin-bottom: 4%;
+    }
+    .all__Messages__Container .message__Item__Container .message__Contents__Item .top__Content {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .all__Messages__Container .message__Item__Container .message__Contents__Item {
+        width: 90%;
+    }
+    .all__Messages__Container .message__Item__Container .message__Image__Item {
+        margin-right: 6%;
+    }
+    .all__Messages__Container .message__Item__Container .message__Contents__Item .message__Content p {
+        line-height: 22px;
+        margin-top: 5%;
+    }
+    .all__Messages__Container .message__Item__Container .message__Contents__Item .top__Content span {
+        margin-top: 3%;
+    }
+}

@@ -1,0 +1,24 @@
+.search__Item__Container {
+    --search-bg-color: #3C393F;   
+    --text-color: #E0E0E0;
+    --white-color: #fff;
+}
+.search__Item__Container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: var(--search-bg-color);
+    border-radius: 8px;
+    padding: 3.66% 3%;
+}
+
+
+.side__Navigation__Bar__Container .search__Item__Container input {
+    color: var(--text-color);
+    font-family: "Noto Sans", sans-serif;
+    margin-left: 3%;
+}
+
+.search__Item__Container .search__Icon {
+    color: var(--white-color);
+}

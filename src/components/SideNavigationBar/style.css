@@ -1,0 +1,64 @@
+.side__Navigation__Bar__Container {
+    --bg-color: #120F13;
+    --text-color: #E0E0E0;
+    --add-icon-bg-color: #252329;
+}
+
+.side__Navigation__Bar__Container {
+    background: var(--bg-color);
+    color: var(--text-color);
+    position: fixed;
+    height: 100%;
+}
+
+.side__Navigation__Bar__Container .add__Icon__Container {
+    display: flex;
+    align-items: center;
+}
+
+.side__Navigation__Bar__Container .add__Icon__Container {
+    background: var(--add-icon-bg-color);
+    border-radius: 8px;
+    padding: 0.905% 1.695%;
+    cursor: pointer;
+    justify-content: center;
+    transition: 0.3s ease-in-out;
+}
+
+.side__Navigation__Bar__Container .add__Icon__Container:hover,
+.side__Navigation__Bar__Container .add__Icon__Container:focus {
+    filter: brightness(0.7);
+}
+
+.side__Navigation__Bar__Container .search__Item__Container {
+    width: 86%;
+    margin: 7% auto 10%;
+}
+
+.side__Navigation__Bar__Container .side__Navigation__Tiles__Container {
+    max-height: 25%;
+    overflow-y: auto;
+}
+
+.side__Navigation__Bar__Container .current__Navigation__Title__Item.direct__Messages__Title__Item {
+    margin-top: 10%;
+    margin-bottom: 2%;
+}
+
+@media screen and (max-width: 767px) {
+    .side__Navigation__Bar__Container {
+        animation: slideFromLeft 0.4s ease-in-out;
+    }
+    .side__Navigation__Bar__Container .side__Navigation__Tiles__Container {
+        max-height: 28%;
+    }
+}
+
+@keyframes slideFromLeft {
+    0% {
+       transform: translateX(-60%);
+    } 
+    100% {
+        transform: translateX(0);
+    }
+}

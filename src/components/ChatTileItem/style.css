@@ -1,0 +1,74 @@
+.chat__Tile__Wrapper {
+    --tile-bg-color: #252329;
+    --text-color: #BDBDBD;
+    --bg-overlay-color-1: #120F13;
+    --bg-overlay-color-2: #3C393F;
+    --info-bg-color: #333333;
+}
+
+.chat__Tile__Wrapper {
+    position: relative;
+}
+
+.chat__Tile__Container ,
+.chat__Tile__Container .chat__Tile__Image__Item {
+    display: flex;
+    align-items: center;
+}
+
+.chat__Tile__Container {
+    width: 86%;
+    margin: 0 auto 4%;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    border-radius: 8px;
+}
+
+.chat__Tile__Container:hover,
+.chat__Tile__Container:focus {
+    filter: brightness(0.7);
+}
+
+.chat__Tile__Container img {
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.chat__Tile__Container .chat__Tile__Image__Item {
+    background-color: var(--tile-bg-color);
+    width: 2.625rem;
+    height: 2.625rem;
+    border-radius: 8px;
+    justify-content: center;
+    margin-right: 4%;
+}
+
+.chat__Tile__Container p {
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 25px;
+    text-transform: uppercase;
+    letter-spacing: -0.035em;
+}
+
+.chat__Tile__Container.active {
+    background-image: linear-gradient(to right top, var(--bg-overlay-color-1), var(--bg-overlay-color-2));
+}
+
+.chat__Tile__Wrapper .info__Container {
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    bottom: -40%;
+    padding: 3% 5%;
+    background-color: var(--info-bg-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.chat__Tile__Wrapper .info__Container:hover,
+.chat__Tile__Wrapper .info__Container:focus {
+    background-color: var(--bg-overlay-color-1);
+}

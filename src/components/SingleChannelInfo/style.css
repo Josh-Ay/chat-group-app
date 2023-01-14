@@ -1,0 +1,49 @@
+.current__Channel__Info {
+    ---grey-color-1: #E0E0E0;
+}
+
+.current__Channel__Info {
+    padding: 2% 7%;
+    height: 100%;
+}
+
+.current__Channel__Info .go__Back__Container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    color: var(---grey-color-1);
+}
+
+.current__Channel__Info .go__Back__Container:hover,
+.current__Channel__Info .go__Back__Container:focus {
+    filter: brightness(0.7);
+}
+
+.current__Channel__Info .go__Back__Container p,
+.current__Channel__Info .channel__Title,
+.current__Channel__Info .channel__Members__Title,
+.current__Channel__Info .channel__About {
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 25px;
+    letter-spacing: -0.035em;
+}
+
+.current__Channel__Info .channel__About {
+    font-weight: 400;
+}
+
+.current__Channel__Info .channel__Title,
+.current__Channel__Info .channel__Members__Title {
+    text-transform: uppercase;
+}
+
+.current__Channel__Info .channel__Members__Title {
+    margin-top: 14%;
+}
+
+.current__Channel__Info .channel__Members__Container {
+    height: 50%;
+    overflow-y: auto;
+}
