@@ -5,14 +5,21 @@ import MainLayout from "../../layouts/MainLayout/MainLayout";
 import { formatDateAndTime } from "../../utils/helpers";
 import useScrollToBottom from "../../hooks/useScrollToBottom";
 import "./style.css";
+import { useStreamContext } from "../../contexts/StreamContext";
+import { STREAM_REDUCER_ACTIONS } from "../../reducers/StreamReducer";
 
 
 const MainPage = () => {
     const { allMessages, currentChannel } = useAppContext();
     const [ currentChannelMessages, setCurrentChannelMessages ] = useState([]);
     const allMessagesRef = useRef(null);
+    const { dispatchToStreamState } = useStreamContext();
 
     useScrollToBottom(allMessagesRef);
+
+    useEffect(() => {
+        dispatchToStreamState({ type: STREAM_REDUCER_ACTIONS.RESET_STATE })
+    }, [])
 
     useEffect(() => {
 

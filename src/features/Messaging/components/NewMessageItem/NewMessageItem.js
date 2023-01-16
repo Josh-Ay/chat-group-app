@@ -12,8 +12,8 @@ import { chunkArray } from '../../../../utils/helpers';
 import useClickOutside from '../../../../hooks/useClickOutside';
 import { toast } from 'react-toastify';
 import { useAppContext } from '../../../../contexts/AppContext';
-import { socket } from '../../../Calling/utils/socketInstance';
 import { useUserContext } from '../../../../contexts/UserContext';
+import { socketInstance } from '../../../utils/socketInstance';
 
 const NewMessageItem = () => {
     const [ newMessage, setNewMessage ] = useState({
@@ -40,7 +40,7 @@ const NewMessageItem = () => {
 
     }, [searchEmojiValue])
 
-    socket.on("receive-message", (message) => {
+    socketInstance.on("receive-message", (message) => {
         console.log("New message: ", message)
     })
 
@@ -66,7 +66,7 @@ const NewMessageItem = () => {
             author: true,
         }
         
-        socket.emit("send-message", newMessageObj, currentChannel?.socketId);
+        socketInstance.emit("send-message", newMessageObj, currentChannel?.socketId);
 
         const receiverInSenderDM = directMessageChannels.find(message => message.id === currentChannel.id);
         if (!receiverInSenderDM && currentChannel.type === "user") {

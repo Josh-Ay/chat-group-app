@@ -11,6 +11,8 @@ import "./style.css";
 import AddNewMessageItem from "../../components/AddNewMessageItem/AddNewMessageItem";
 import { Close } from "@mui/icons-material";
 import { peopleSvg } from "../../assets/images/imagesIndex";
+import { useStreamContext } from "../../contexts/StreamContext";
+import IncomingCallItem from "../../features/Calling/components/IncomingCall/IncomingCallItem";
 
 
 const MainLayout = ({ children }) => {
@@ -40,6 +42,7 @@ const MainLayout = ({ children }) => {
     const contentContainerRef = useRef(null);
     const [ disableSaveBtn, setDisableSaveBtn ] = useState(true);
     const [ isSideBarOpen, setIsSideBarOpen ] = useState(true);
+    const { streamState } = useStreamContext();
 
     useEffect(() => {
 
@@ -49,10 +52,6 @@ const MainLayout = ({ children }) => {
 
     }, [newChannelDetails])
     
-    useEffect(() => {
-
-    }, [])
-
     useClickOutside(newChannelRef, () => setShowNewItem({ showNewChannel: false, showNewMessage: false }));
     useClickOutside(newMessageRef, () => setShowNewItem({ showNewChannel: false, showNewMessage: false }));
     useClickInside(contentContainerRef, isSmallScreen ? () => setIsSideBarOpen(false) : () => {})
@@ -115,7 +114,7 @@ const MainLayout = ({ children }) => {
                         </div> : <></> 
                     }
                     { 
-                        currentChannel ? <NavigationTitleItem title={currentChannel?.title || currentChannel?.displayName} style={isSideBarOpen ? { paddingLeft: "20%" } : {}} /> : 
+                        currentChannel ? <NavigationTitleItem title={currentChannel?.title || currentChannel?.displayName} style={isSmallScreen && isSideBarOpen ? { paddingLeft: "20%" } : {}} /> : 
                         <>
                             <div className="no__Chats__Open__Container">
                                 <img src={peopleSvg} alt="" />
@@ -148,6 +147,13 @@ const MainLayout = ({ children }) => {
                 />
             }
             
+            { 
+                streamState.receivingCall && streamState.isReceivingPeerCall && !streamState.callAccepted &&
+                <IncomingCallItem
+                    personCalling={streamState.callerName}
+                    isGroupCall={false}
+                />
+            }
         </div>
     </>
 }
