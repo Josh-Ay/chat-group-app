@@ -38,18 +38,24 @@ io.on("connection", (socket) => {
         io.to(to).emit("call-accepted", signal)
     })
 
-    // update a user's video status(showing or not)
+    // update a user's video status(showing or not on a peer call)
     socket.on("update-video-status", (userSocketId, value) => {
         io.to(userSocketId).emit("update-video-status", value)
     })
 
-    // update a user's audio status(muted or not)
+    // update a user's audio status(muted or not on a peer call)
     socket.on("update-audio-status", (userSocketId, value) => {
         io.to(userSocketId).emit("update-audio-status", value)
     })
 
+    // cancel a peer call
+    socket.on("cancel-call", (userSocketId) => {
+        io.to(userSocketId).emit("call-cancelled")
+    })
+
     socket.on("disconnect", () => {
-        socket.broadcast.emit("call-ended")
+        console.log("User with socket id: ", socket.id, " disconnected")
+        // socket.broadcast.emit("call-ended")
     })
 })
 
