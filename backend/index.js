@@ -28,9 +28,9 @@ io.on("connection", (socket) => {
     })
 
     // call a user
-    socket.on("call-user", (userToCall, signalData, from, name) => {
+    socket.on("call-user", (userToCall, signalData, from, name, callType) => {
         // emit an event to the recipient of the call
-        io.to(userToCall).emit("call-user", signalData, from, name)
+        io.to(userToCall).emit("receiving-call", signalData, from, name, callType)
     })
 
     // answer a user
@@ -38,8 +38,17 @@ io.on("connection", (socket) => {
         io.to(to).emit("call-accepted", signal)
     })
 
+    // update a user's video status(showing or not)
+    socket.on("update-video-status", (userSocketId, value) => {
+        io.to(userSocketId).emit("update-video-status", value)
+    })
+
+    // update a user's audio status(muted or not)
+    socket.on("update-audio-status", (userSocketId, value) => {
+        io.to(userSocketId).emit("update-audio-status", value)
+    })
+
     socket.on("disconnect", () => {
-        console.log("disconnected")
         socket.broadcast.emit("call-ended")
     })
 })
