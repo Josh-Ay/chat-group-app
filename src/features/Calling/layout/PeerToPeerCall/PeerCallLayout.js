@@ -1,25 +1,14 @@
-import { useEffect } from "react";
-import { initialStreamStateNames, useStreamContext } from "../../../../contexts/StreamContext";
+import { useStreamContext } from "../../../../contexts/StreamContext";
 import { useUserContext } from "../../../../contexts/UserContext";
-import { STREAM_REDUCER_ACTIONS } from "../../../../reducers/StreamReducer";
 import UserVideoItem from "../../components/UserVideoItem/UserVideoItem";
-import { getLocalUserStream } from "../../utils/utils";
 import "./style.css";
-
+import useGetLocalUserVideoStream from "../../hooks/useGetLocalUserVideoStream";
 
 const PeerCallLayout = ({ children, localUserAudioEnabled, localUserVideoEnabled, remoteUserAudioEnabled, remoteUserVideoEnabled}) => {
     const { currentUser } = useUserContext();
-    const { streamState, dispatchToStreamState } = useStreamContext();
+    const { streamState } = useStreamContext();
 
-    useEffect(() => {
-
-        getLocalUserStream().then(stream => {
-            dispatchToStreamState({ type: STREAM_REDUCER_ACTIONS.UPDATE_LOCAL_STREAM, stateToUpdate: initialStreamStateNames.localStream, payload: { value: stream }})
-        }).catch(err => {
-            console.log(err)
-        })
-    
-    }, [])
+    useGetLocalUserVideoStream();
     
     return <>
         <div className="peer__Call__Container__Page">

@@ -148,7 +148,7 @@ const MainLayout = ({ children }) => {
             }
             
             { 
-                streamState.receivingCall && streamState.isReceivingPeerCall && !streamState.callAccepted &&
+                streamState.receivingCall && streamState.isReceivingPeerCall && !streamState.callAccepted && !streamState.callEnded &&
                 <IncomingCallItem
                     personCalling={streamState.callerName}
                     isGroupCall={false}

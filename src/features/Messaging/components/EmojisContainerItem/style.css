@@ -1,0 +1,42 @@
+.all__Emojis__Container {
+    --bg-color:  #3C393F;
+}
+.all__Emojis__Container {
+    width: 20rem;
+    height: 14rem;
+    position: absolute;
+    background: var(--bg-color);
+    bottom: 200%;
+    left: 0;
+    border-radius: 8px;
+    z-index: 9999;
+}
+
+.all__Emojis__Container .emojis__Content,
+.all__Emojis__Container .emojis__Content .emoji__Row {
+    display: flex;
+}
+
+.all__Emojis__Container .emojis__Content {
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow-x: auto;
+    height: 80%;
+}
+
+.all__Emojis__Container .emojis__Content .emoji__Row {
+    justify-content: space-between;
+    margin-right: 6%;
+    width: 100%;
+}
+
+.all__Emojis__Container .emojis__Content .emoji {
+    margin: 2%;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.all__Emojis__Container .emojis__Content .emoji:hover,
+.all__Emojis__Container .emojis__Content .emoji:focus {
+    filter: brightness(0.7);
+}

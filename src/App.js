@@ -7,9 +7,9 @@ import ProfilePage from './pages/ProfilePage/ProfilePage';
 import SettingsPage from './pages/SettingsPage/SettingsPage';
 import PeerCallPage from './features/Calling/pages/PeerCallPage';
 import GroupCallPage from './features/Calling/pages/GroupCallPage';
-import useListenForIncomingCalls from './hooks/useListenForIncomingCalls';
+import useListenForIncomingCalls from './features/Calling/hooks/useListenForIncomingCalls';
+import useListenForPeerMediaChange from './features/Calling/hooks/useListenForPeerMediaChange';
 import useConnectToSocketIoServer from './hooks/useConnectToSocketIoServer';
-import useListenForPeerMediaChange from './hooks/useListenForPeerMediaChange';
 
 function App() {
   

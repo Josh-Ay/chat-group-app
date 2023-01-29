@@ -22,6 +22,10 @@ export const STREAM_REDUCER_ACTIONS = {
     "ADD_NEW_PEER": "ADD_NEW_PEER",
     "REMOVE_PEER": "REMOVE_PEER",
     "RESET_STATE": "RESET_STATE",
+    "UPDATE_GROUP_CALL_ENDED": "UPDATE_GROUP_CALL_ENDED",
+    "UPDATE_PEER_STREAM_IN_ROOM": "UPDATE_PEER_STREAM_IN_ROOM",
+    "UPDATE_CURRENT_ROOM_ID": "UPDATE_CURRENT_ROOM_ID",
+    "UPDATE_USER_LEFT_GROUP_CALL": "UPDATE_USER_LEFT_GROUP_CALL",
 }
 
 export const streamReducer = (currentState, action) => {
@@ -42,6 +46,9 @@ export const streamReducer = (currentState, action) => {
         case STREAM_REDUCER_ACTIONS.UPDATE_REMOTE_USER_VIDEO_STATUS:
         case STREAM_REDUCER_ACTIONS.UPDATE_IS_RECEIVING_PEER_CALL:
         case STREAM_REDUCER_ACTIONS.UPDATE_CALL_REJECTED:
+        case STREAM_REDUCER_ACTIONS.UPDATE_GROUP_CALL_ENDED:
+        case STREAM_REDUCER_ACTIONS.UPDATE_USER_LEFT_GROUP_CALL:
+        case STREAM_REDUCER_ACTIONS.UPDATE_CURRENT_ROOM_ID:
             if (!action.payload.value || !action.stateToUpdate) return currentState
             return { ...currentState, [initialStreamStateNames[`${action.stateToUpdate}`]]: action.payload.value }
         case STREAM_REDUCER_ACTIONS.START_PEER_CALL:
@@ -58,10 +65,22 @@ export const streamReducer = (currentState, action) => {
             }
         case STREAM_REDUCER_ACTIONS.ADD_NEW_PEER:
             if (!action.payload.value) return currentState
+            const currentActivePeers = currentState.peers.slice();
+            if (currentActivePeers.find(peer => peer.userId === action.payload.value.userId)) return currentState
             return { ...currentState, [initialStreamStateNames.peers]: [ ...currentState[initialStreamStateNames.peers], action.payload.value ]}
         case STREAM_REDUCER_ACTIONS.REMOVE_PEER:
             if (!action.payload.value) return currentState
-            return { ...currentState, [initialStreamStateNames.peers]: [...currentState[initialStreamStateNames].filter(peer => peer.peerId !== action.payload.idToRemove)]}    
+            return { ...currentState, [initialStreamStateNames.peers]: [...currentState[initialStreamStateNames].filter(peer => peer.socketId !== action.payload.idToRemove)]}    
+        case STREAM_REDUCER_ACTIONS.UPDATE_PEER_STREAM_IN_ROOM:
+            if (!action.payload.userId || !action.payload.value) return currentState;
+            
+            const currentPeers = currentState.peers.slice();
+            
+            const foundPeerIndexToUpdate = currentPeers.findIndex(peer => peer.userId === action.payload.userId);
+            if (foundPeerIndexToUpdate === -1) return currentState;
+            
+            currentPeers[foundPeerIndexToUpdate].stream = action.payload.value;
+            return { ...currentState, [initialState.peers]: currentPeers}
         case STREAM_REDUCER_ACTIONS.RESET_STATE:
             const initialStateCopy = { ...initialState };
             delete initialStateCopy.socketId;

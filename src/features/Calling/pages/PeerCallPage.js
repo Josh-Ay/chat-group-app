@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { initialStreamStateNames, useStreamContext } from "../../../contexts/StreamContext";
 import { socketInstance } from "../../utils/socketInstance";
@@ -12,10 +12,10 @@ import CircularButton from "../components/CircularButton/CircularButton";
 import { useUserContext } from "../../../contexts/UserContext";
 import { VideoCameraFront } from "@mui/icons-material";
 import { STREAM_REDUCER_ACTIONS } from "../../../reducers/StreamReducer";
+import useUpdateChangeCallTypeOnParams from "../hooks/useUpdateChangeCallTypeOnParams";
 
 const PeerCallPage = () => {
     const location = useLocation();
-    const [ params, setParams ] = useSearchParams();
     const [ isVideoCall, setIsVideoCall ] = useState(false);
     const [ isAudioEnabled, setIsAudioEnabled ] = useState(true);
     const navigate = useNavigate();
@@ -36,30 +36,7 @@ const PeerCallPage = () => {
 
     }, [location])
 
-    useEffect(() => {
-
-        const callType = params.get("type");
-
-        if (!callType || !["audio", "video"].includes(callType)) return navigate("/");
-
-        setCallType(callType);
-
-        if (callType === "audio") {
-            // socketInstance.emit("update-video-status", streamState.socketIdToCall, false);
-            setIsVideoCall(false);
-
-            if (!streamState.localStream) return
-            
-            streamState.localStream.getVideoTracks().forEach(track => {
-                track.enabled = false
-            });
-
-            return 
-        }
-
-        setIsVideoCall(true);
-
-    }, [params])
+    useUpdateChangeCallTypeOnParams(setCallType, setIsVideoCall, () => navigate("/"));
 
     useEffect(() => {
 
@@ -99,7 +76,10 @@ const PeerCallPage = () => {
 
     }
 
-    const leaveCall = () => dispatchToStreamState({ type: STREAM_REDUCER_ACTIONS.UPDATE_CALL_ENDED, stateToUpdate: initialStreamStateNames.callEnded, payload: { value: true } })
+    const leaveCall = () => {
+        socketInstance.emit("call-ended", streamState.caller)
+        dispatchToStreamState({ type: STREAM_REDUCER_ACTIONS.UPDATE_CALL_ENDED, stateToUpdate: initialStreamStateNames.callEnded, payload: { value: true } })
+    }
 
 
     const handleUpdateAudioStatus = () => {
@@ -128,7 +108,7 @@ const PeerCallPage = () => {
 
         <p className="calling__User__Status__Indicator">
             { 
-                (streamState.isCalling && !streamState.callRejected) ?
+                (streamState.isCalling && !streamState.callRejected && !streamState.callAccepted) ?
                 "Calling..." :
                 streamState.callRejected ?
                 "Call Rejected" : 

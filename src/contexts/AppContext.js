@@ -8,7 +8,7 @@ export const useAppContext = () => useContext(AppContext);
 export const amandaId = crypto.randomUUID();
 
 export const AppContextProvider = ({ children }) => {
-    const [ frontEndChannelId, randomChannelId, backendChannelId, catsChannelId, welcomeChannelId ] = [ crypto.randomUUID(), crypto.randomUUID(), crypto.randomUUID(), crypto.randomUUID(), crypto.randomUUID() ];
+    const [ frontEndChannelId, randomChannelId, backendChannelId, catsChannelId, welcomeChannelId ] = [ "fjdfkdjfkd4530", crypto.randomUUID(), crypto.randomUUID(), crypto.randomUUID(), crypto.randomUUID() ];
     const [ xanderId, nelleId, annalieseId, cleoId ] = [ crypto.randomUUID(), crypto.randomUUID(), crypto.randomUUID(), crypto.randomUUID() ];
     
     const [ directMessageChannels, setDirectMessageChannels ] = useState([

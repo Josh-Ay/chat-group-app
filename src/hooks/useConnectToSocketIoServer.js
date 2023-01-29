@@ -13,7 +13,9 @@ export default function useConnectToSocketIoServer () {
         })
 
         socketInstance.on("disconnect", () => {
-            console.log("disconnected")
+            console.log("disconnected from server")
+            dispatchToStreamState({ type: STREAM_REDUCER_ACTIONS.UPDATE_CALL_ENDED, stateToUpdate: initialStreamStateNames.callEnded, payload: { value: true }})
+            dispatchToStreamState({ type: STREAM_REDUCER_ACTIONS.UPDATE_GROUP_CALL_ENDED, stateToUpdate: initialStreamStateNames.groupCallEnded, payload: { value: true }})
         })
         
     }, [])

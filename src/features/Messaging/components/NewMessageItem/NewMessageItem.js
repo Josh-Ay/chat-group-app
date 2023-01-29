@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 import { useAppContext } from '../../../../contexts/AppContext';
 import { useUserContext } from '../../../../contexts/UserContext';
 import { socketInstance } from '../../../utils/socketInstance';
+import EmojisContainerItem from '../EmojisContainerItem/EmojisContainerItem';
 
 const NewMessageItem = () => {
     const [ newMessage, setNewMessage ] = useState({
@@ -99,22 +100,13 @@ const NewMessageItem = () => {
                 </NoteAddIcon>
 
                 { 
-                    showEmojis && <div className='all__Emojis__Container' ref={emojisListRef}>
-                        <SearchBar searchValue={searchEmojiValue} updateSearchValue={setSearchEmojiValue} />
-                        <div className='emojis__Content'>
-                            {
-                                React.Children.toArray(allEmojis.map(row => {
-                                    return <div className='emoji__Row'>
-                                        {
-                                            React.Children.toArray(row.map(emojiItem => {
-                                                return <div className='emoji' onClick={() => updateNewMessageText("text", newMessage + emojiItem.emoji)}>{emojiItem.emoji}</div>
-                                            }))
-                                        }
-                                    </div>
-                                }))
-                            }
-                        </div>
-                    </div>
+                    showEmojis && <EmojisContainerItem 
+                        emojisListRef={emojisListRef}
+                        emojisList={allEmojis}
+                        emojiSearchValue={searchEmojiValue}
+                        updateEmojiSearchValue={setSearchEmojiValue}
+                        handleAddEmoji={(emoji) => updateNewMessageText("text", newMessage + emoji)}
+                    />
                 }
             </div>
             <input type={"text"} placeholder={"Type a message here"} autoFocus value={newMessage ? newMessage.text : ""} onChange={(e) => updateNewMessageText("text", e.target.value)} onKeyDown={handleKeyPress} />

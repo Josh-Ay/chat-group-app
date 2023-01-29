@@ -1,10 +1,10 @@
 import { useEffect } from "react"
-import { initialStreamStateNames, useStreamContext } from "../contexts/StreamContext";
-import { socketInstance } from "../features/utils/socketInstance"
-import { STREAM_REDUCER_ACTIONS } from "../reducers/StreamReducer";
+import { initialStreamStateNames, useStreamContext } from "../../../contexts/StreamContext";
+import { STREAM_REDUCER_ACTIONS } from "../../../reducers/StreamReducer";
+import { socketInstance } from "../../utils/socketInstance";
 
 export default function useListenForIncomingCalls () {
-    const { dispatchToStreamState } = useStreamContext();
+    const { streamState, dispatchToStreamState } = useStreamContext();
 
     useEffect(() => {
         
@@ -19,6 +19,18 @@ export default function useListenForIncomingCalls () {
 
         socketInstance.on("call-cancelled", () => {
             dispatchToStreamState({ type: STREAM_REDUCER_ACTIONS.UPDATE_CALL_REJECTED, stateToUpdate: initialStreamStateNames.callRejected, payload: { value: true }})
+        })
+
+        socketInstance.on("call-ended", () => {
+            dispatchToStreamState({ type: STREAM_REDUCER_ACTIONS.UPDATE_CALL_ENDED, stateToUpdate: initialStreamStateNames.callEnded, payload: { value: true }})
+        })
+
+        socketInstance.on("user-disconnected", (disconnectedUserSocketId) => {
+            console.log("this user disconnected: ", disconnectedUserSocketId)
+            if (streamState.callAccepted || streamState.isCalling || streamState.receivingCall) {
+                if (streamState.caller === disconnectedUserSocketId) dispatchToStreamState({ type: STREAM_REDUCER_ACTIONS.UPDATE_CALL_ENDED, stateToUpdate: initialStreamStateNames.callEnded, payload: { value: true }})
+                if (streamState.socketIdToCall === disconnectedUserSocketId)  dispatchToStreamState({ type: STREAM_REDUCER_ACTIONS.UPDATE_CALL_ENDED, stateToUpdate: initialStreamStateNames.callEnded, payload: { value: true }})
+            }
         })
         
     }, [])

@@ -23,6 +23,9 @@ export const initialStreamStateNames = {
     "isReceivingPeerCall": "isReceivingPeerCall",
     "callRejected": "callRejected",
     "peers": "peers",
+    "groupCallEnded": "groupCallEnded",
+    "currentRoomId": "currentRoomId",
+    "userLeftGroupCall": "userLeftGroupCall",
 }
 
 export const initialState = {
@@ -43,6 +46,9 @@ export const initialState = {
     isReceivingPeerCall: false,
     callRejected: false,
     peers: [],
+    groupCallEnded: false,
+    currentRoomId: null,
+    userLeftGroupCall: false,
 }
 
 export const StreamContextProvider = ({ children }) => {

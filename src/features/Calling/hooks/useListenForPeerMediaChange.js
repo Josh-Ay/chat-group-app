@@ -1,7 +1,7 @@
 import { useEffect } from "react"
-import { initialStreamStateNames, useStreamContext } from "../contexts/StreamContext";
-import { socketInstance } from "../features/utils/socketInstance"
-import { STREAM_REDUCER_ACTIONS } from "../reducers/StreamReducer";
+import { initialStreamStateNames, useStreamContext } from "../../../contexts/StreamContext";
+import { STREAM_REDUCER_ACTIONS } from "../../../reducers/StreamReducer";
+import { socketInstance } from "../../utils/socketInstance";
 
 export default function useListenForPeerMediaChange () {
     const { dispatchToStreamState } = useStreamContext();

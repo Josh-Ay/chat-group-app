@@ -1,0 +1,53 @@
+.group__Call__Container {
+    padding: 0 4%;
+    color: #e0e0e0;
+    position: relative;
+}
+
+.group__Call__Container .group__Title {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.group__Call__Container .group__Videos__Container {
+    column-count: 4;
+    column-gap: 1rem;
+    max-height: 100%;
+    margin-top: 2.5%;
+}
+
+.group__Call__Container .group__Videos__Container video,
+.group__Call__Container .group__Videos__Container img {
+    border-radius: 50%;
+    width: 15rem;
+    height: 14rem;
+    z-index: 2;
+    max-width: 100%;
+}
+
+.group__Call__Container .group__Videos__Container video:nth-child(2n + 2) {
+    margin-top: 1rem;
+}
+
+.group__Call__Container .call__Btns__Container {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.group__Call__Container .group__Call__Ended__Text {
+    z-index: 4;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 1.5rem;
+    transform: translate(-50%, -50%);
+    padding: 2%;
+    border-radius: 10px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+}
